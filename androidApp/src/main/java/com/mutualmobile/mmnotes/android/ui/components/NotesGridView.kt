@@ -34,7 +34,7 @@ fun NotesGridView(
     Row(
         modifier = Modifier
             .fillMaxSize()
-            .padding(padding)
+            .padding(horizontal = padding)
     ) {
         LazyVerticalGrid(
             cells = GridCells.Fixed(gridSize),
@@ -47,6 +47,9 @@ fun NotesGridView(
                             padding = padding
                         )
                     }
+                }
+                item {
+                    Spacer(modifier = Modifier.padding(padding * 11))
                 }
             }
         )

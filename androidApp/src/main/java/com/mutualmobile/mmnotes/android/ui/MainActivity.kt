@@ -4,8 +4,19 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.FabPosition
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import com.mutualmobile.mmnotes.android.R
 import com.mutualmobile.mmnotes.android.theme.BaseComposeTheme
+import com.mutualmobile.mmnotes.android.ui.components.NotesBottomAppBar
 import com.mutualmobile.mmnotes.android.ui.components.NotesGridView
 import com.mutualmobile.mmnotes.data.datasources.local.MMNotesDatabase
 import com.mutualmobile.mmnotes.data.sources.local.DatabaseDriverFactory
@@ -40,26 +51,44 @@ class MainActivity : AppCompatActivity() {
         setContent {
             BaseComposeTheme {
                 Surface {
-                    NotesGridView(
-                        notes = listOf(
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                    val fabShape = RoundedCornerShape(16.dp)
+                    Scaffold(
+                        floatingActionButton = {
+                            FloatingActionButton(
+                                onClick = {},
+                                shape = fabShape
+                            ) {
+                                Image(
+                                    imageVector = Icons.Default.Add,
+                                    contentDescription = stringResource(R.string.fab_description)
+                                )
+                            }
+                        },
+                        isFloatingActionButtonDocked = true,
+                        floatingActionButtonPosition = FabPosition.End,
+                        bottomBar = { NotesBottomAppBar(fabShape) }
+                    ) {
+                        NotesGridView(
+                            notes = listOf(
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
+                            )
                         )
-                    )
+                    }
                 }
             }
         }

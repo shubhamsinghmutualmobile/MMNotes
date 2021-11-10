@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fab_description">Add note</string>
+    <string name="bottomAppBarCb_description">New list</string>
+    <string name="bottomAppBarBrush_description">New drawing note</string>
+    <string name="bottomAppBarMic_description">New audio note</string>
+    <string name="bottomAppBarPhoto_description">New photo note</string>
+</resources>
