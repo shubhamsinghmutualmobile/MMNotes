@@ -12,22 +12,25 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.mutualmobile.mmnotes.android.R
 import com.mutualmobile.mmnotes.android.theme.BaseComposeTheme
 import com.mutualmobile.mmnotes.android.ui.components.NotesBottomAppBar
 import com.mutualmobile.mmnotes.android.ui.components.NotesGridView
+import com.mutualmobile.mmnotes.android.ui.components.TopSearchBar
 import com.mutualmobile.mmnotes.data.datasources.local.MMNotesDatabase
 import com.mutualmobile.mmnotes.data.sources.local.DatabaseDriverFactory
 import com.mutualmobile.mmnotes.data.sources.local.repositories.NoteRepositoryImpl
-import com.mutualmobile.mmnotes.domain.models.Note
 import com.mutualmobile.mmnotes.domain.repositories.NoteRepository
 import com.mutualmobile.mmnotes.domain.usecases.notes.DeleteAllNotesUseCase
 import com.mutualmobile.mmnotes.domain.usecases.notes.GetAllNotesUseCase
 import com.mutualmobile.mmnotes.domain.usecases.notes.InsertNoteUseCase
 import com.mutualmobile.mmnotes.domain.usecases.notes.SearchNotesUseCase
 import com.mutualmobile.mmnotes.viewmodels.NotesViewModel
+import dev.icerock.moko.mvvm.livedata.asFlow
 
 private const val TAG = "MainActivity"
 
@@ -66,27 +69,16 @@ class MainActivity : AppCompatActivity() {
                         },
                         isFloatingActionButtonDocked = true,
                         floatingActionButtonPosition = FabPosition.End,
-                        bottomBar = { NotesBottomAppBar(fabShape) }
+                        bottomBar = { NotesBottomAppBar(fabShape) },
+                        topBar = {
+                            TopSearchBar()
+                        }
                     ) {
+                        val notes by notesViewModel.listOfNotesLiveData.asFlow().collectAsState(
+                            initial = listOf()
+                        )
                         NotesGridView(
-                            notes = listOf(
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                                Note(1, "Test", "TestBody\nTestBody\nTestBody", 123456),
-                            )
+                            notes = notes
                         )
                     }
                 }

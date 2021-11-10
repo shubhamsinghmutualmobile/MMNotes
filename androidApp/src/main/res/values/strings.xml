@@ -5,4 +5,8 @@
     <string name="bottomAppBarBrush_description">New drawing note</string>
     <string name="bottomAppBarMic_description">New audio note</string>
     <string name="bottomAppBarPhoto_description">New photo note</string>
+    <string name="topSearchBar_menuDesc">Options drawer</string>
+    <string name="topSearchBar_searchHint">Search your notes</string>
+    <string name="topSearchBar_layoutTypeDesc">Notes layout type</string>
+    <string name="topSearchBar_profileBtnDesc">User profile dialog</string>
 </resources>
