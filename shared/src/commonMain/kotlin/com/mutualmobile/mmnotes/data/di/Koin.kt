@@ -8,6 +8,7 @@ import com.mutualmobile.mmnotes.domain.usecases.notes.GetAllNotesUseCase
 import com.mutualmobile.mmnotes.domain.usecases.notes.GetNoteByIdUseCase
 import com.mutualmobile.mmnotes.domain.usecases.notes.InsertNoteUseCase
 import com.mutualmobile.mmnotes.domain.usecases.notes.SearchNotesUseCase
+import com.mutualmobile.mmnotes.domain.usecases.notes.UpdateNoteUseCase
 import com.mutualmobile.mmnotes.viewmodels.NotesViewModel
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
@@ -23,10 +24,11 @@ fun initKoin() = initKoin {}
 val commonModule = module {
     single { MMNotesDatabase(get()) }
     single<NoteRepository> { NoteRepositoryImpl() }
-    single { NotesViewModel(get(), get(), get(), get(), get()) }
+    single { NotesViewModel(get(), get(), get(), get(), get(), get()) }
     single { DeleteAllNotesUseCase() }
     single { GetAllNotesUseCase() }
     single { InsertNoteUseCase() }
     single { SearchNotesUseCase() }
     single { GetNoteByIdUseCase() }
+    single { UpdateNoteUseCase() }
 }

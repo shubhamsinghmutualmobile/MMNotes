@@ -37,7 +37,7 @@ fun LandingPage(
         Scaffold(
             floatingActionButton = {
                 FloatingActionButton(
-                    onClick = { navigator.navigate(NoteDetailsScreenDestination()) },
+                    onClick = { navigator.navigate(NoteDetailsScreenDestination(isNewNote = true)) },
                     shape = fabShape
                 ) {
                     Image(

@@ -59,4 +59,15 @@ class NoteRepositoryImpl : NoteRepository, KoinComponent {
             ).toNote()
         }
     }
+
+    override fun updateNote(note: Note) {
+        note.id?.let { nnNoteId ->
+            database.mMNotesDatabaseQueries.updateNote(
+                title = note.title,
+                body = note.body,
+                dateCreated = note.dateCreated,
+                id = nnNoteId.toLong()
+            )
+        }
+    }
 }

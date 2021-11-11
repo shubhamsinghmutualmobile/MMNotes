@@ -1,5 +1,6 @@
 package com.mutualmobile.mmnotes.android.ui.screens.note_details_screen
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,9 +26,17 @@ private const val TAG = "NoteDetailsScreen"
 fun NoteDetailsScreen(
     navigator: DestinationsNavigator,
     noteId: String? = null,
-    notesViewModel: NotesViewModel = getViewModel()
+    notesViewModel: NotesViewModel = getViewModel(),
+    isNewNote: Boolean
 ) {
     var note: Note? = null
+
+    BackHandler(
+        enabled = true,
+        onBack = {
+            onBackPressed(isNewNote, note, notesViewModel, navigator)
+        }
+    )
 
     noteId?.let {
         val noteIdInt = it.toInt()
@@ -38,16 +47,43 @@ fun NoteDetailsScreen(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            TopActionBar(navigator)
+            TopActionBar(
+                onBackPressed = { onBackPressed(isNewNote, note, notesViewModel, navigator) }
+            )
             Column(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxSize()
             ) {
-                TitleRow(noteTitle = note?.title)
-                NoteRow(noteBody = note?.body)
+                TitleRow(noteTitle = note?.title) { userInput: String ->
+                    note = note?.copy(title = userInput)
+                        ?: Note(null, userInput, "", 123456)
+                }
+                NoteRow(noteBody = note?.body) { userInput: String ->
+                    note = note?.copy(body = userInput)
+                        ?: Note(null, "", userInput, 123456)
+                }
             }
             BottomActionBar()
+        }
+    }
+}
+
+private fun onBackPressed(
+    isNewNote: Boolean,
+    note: Note?,
+    notesViewModel: NotesViewModel,
+    navigator: DestinationsNavigator
+) {
+    if (isNewNote) {
+        note?.let { nnNote ->
+            notesViewModel.insertNote(note = nnNote)
+            navigator.navigateUp()
+        }
+    } else {
+        note?.let { nnNote ->
+            notesViewModel.updateNote(note = nnNote)
+            navigator.navigateUp()
         }
     }
 }

@@ -6,6 +6,7 @@ import com.mutualmobile.mmnotes.domain.usecases.notes.GetAllNotesUseCase
 import com.mutualmobile.mmnotes.domain.usecases.notes.GetNoteByIdUseCase
 import com.mutualmobile.mmnotes.domain.usecases.notes.InsertNoteUseCase
 import com.mutualmobile.mmnotes.domain.usecases.notes.SearchNotesUseCase
+import com.mutualmobile.mmnotes.domain.usecases.notes.UpdateNoteUseCase
 import dev.icerock.moko.mvvm.livedata.LiveData
 import dev.icerock.moko.mvvm.livedata.MutableLiveData
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
@@ -18,7 +19,8 @@ class NotesViewModel constructor(
     private val getAllNotesUseCase: GetAllNotesUseCase,
     private val searchNotesUseCase: SearchNotesUseCase,
     private val insertNoteUseCase: InsertNoteUseCase,
-    private val getNoteByIdUseCase: GetNoteByIdUseCase
+    private val getNoteByIdUseCase: GetNoteByIdUseCase,
+    private val updateNoteUseCase: UpdateNoteUseCase
 ) : ViewModel() {
 
     private val _listOfNotesLiveData: MutableLiveData<List<Note>> = MutableLiveData(listOf())
@@ -56,4 +58,10 @@ class NotesViewModel constructor(
     }
 
     fun getNoteById(id: Int) = getNoteByIdUseCase(noteId = id)
+
+    fun updateNote(note: Note) {
+        viewModelScope.launch {
+            updateNoteUseCase(note = note)
+        }
+    }
 }

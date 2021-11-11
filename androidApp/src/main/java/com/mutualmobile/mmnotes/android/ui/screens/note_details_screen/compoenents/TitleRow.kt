@@ -23,7 +23,8 @@ import com.mutualmobile.mmnotes.android.R
 @Composable
 fun TitleRow(
     padding: Dp = 8.dp,
-    noteTitle: String?
+    noteTitle: String?,
+    updateNoteTitle: (String) -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -39,6 +40,7 @@ fun TitleRow(
             value = title,
             onValueChange = { userInputText ->
                 title = userInputText
+                updateNoteTitle(userInputText)
             },
             textStyle = MaterialTheme.typography.h4.copy(color = MaterialTheme.colors.onSurface)
         )

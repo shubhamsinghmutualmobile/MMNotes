@@ -22,7 +22,8 @@ import com.mutualmobile.mmnotes.android.R
 @Composable
 fun NoteRow(
     padding: Dp = 8.dp,
-    noteBody: String?
+    noteBody: String?,
+    updateNoteBody: (String) -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -38,6 +39,7 @@ fun NoteRow(
             value = noteText,
             onValueChange = { userInputText ->
                 noteText = userInputText
+                updateNoteBody(userInputText)
             },
             textStyle = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.onSurface)
         )

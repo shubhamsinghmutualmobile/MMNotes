@@ -80,7 +80,12 @@ private fun NoteCard(
             modifier = Modifier
                 .fillMaxSize()
                 .clickable {
-                    navigator.navigate(NoteDetailsScreenDestination(noteId = note.id.toString()))
+                    navigator.navigate(
+                        NoteDetailsScreenDestination(
+                            noteId = note.id.toString(),
+                            isNewNote = false
+                        )
+                    )
                 }
                 .padding(padding * 3),
             horizontalAlignment = Alignment.Start,

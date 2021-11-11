@@ -16,12 +16,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.mutualmobile.mmnotes.android.R
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable
 fun TopActionBar(
-    navigator: DestinationsNavigator,
-    padding: Dp = 8.dp
+    padding: Dp = 8.dp,
+    onBackPressed: () -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -31,7 +30,7 @@ fun TopActionBar(
             .wrapContentHeight()
             .padding(padding)
     ) {
-        IconButton(onClick = { navigator.navigateUp() }) {
+        IconButton(onClick = { onBackPressed() }) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_back_arrow),
                 contentDescription = stringResource(R.string.topActionBar_backBtnDesc)
