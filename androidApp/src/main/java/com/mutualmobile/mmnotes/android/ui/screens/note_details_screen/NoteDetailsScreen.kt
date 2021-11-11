@@ -78,12 +78,11 @@ private fun onBackPressed(
     if (isNewNote) {
         note?.let { nnNote ->
             notesViewModel.insertNote(note = nnNote)
-            navigator.navigateUp()
         }
     } else {
         note?.let { nnNote ->
             notesViewModel.updateNote(note = nnNote)
-            navigator.navigateUp()
         }
     }
+    navigator.navigateUp()
 }
