@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("com.google.devtools.ksp") version "1.5.31-1.0.0"
 }
 
 dependencies {
@@ -24,10 +25,16 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+
+    // Navigation
+    implementation("io.github.raamcosta.compose-destinations:core:0.9.4-beta")
+    ksp("io.github.raamcosta.compose-destinations:ksp:0.9.4-beta")
+    implementation("androidx.navigation:navigation-compose:2.4.0-beta02")
 }
 
 android {
     compileSdk = 31
+    sourceSets["debug"].java.srcDir(file("build/generated/ksp/debug/kotlin"))
     defaultConfig {
         applicationId = "com.mutualmobile.mmnotes.androidApp"
         minSdk = 24

@@ -81,6 +81,7 @@ kotlin {
 android {
     compileSdk = 31
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    sourceSets["debug"].java.srcDir(file("build/generated/ksp/debug/kotlin"))
     defaultConfig {
         minSdk = 24
         targetSdk = 31
