@@ -22,7 +22,8 @@ import com.mutualmobile.mmnotes.android.R
 
 @Composable
 fun TitleRow(
-    padding: Dp = 8.dp
+    padding: Dp = 8.dp,
+    noteTitle: String?
 ) {
     Box(
         modifier = Modifier
@@ -32,7 +33,7 @@ fun TitleRow(
         contentAlignment = Alignment.TopStart
     ) {
         var title by remember {
-            mutableStateOf("")
+            mutableStateOf(noteTitle ?: "")
         }
         BasicTextField(
             value = title,

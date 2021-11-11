@@ -6,6 +6,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.mutualmobile.mmnotes.android.ui.screens.note_details_screen.compoenents.BottomActionBar
 import com.mutualmobile.mmnotes.android.ui.screens.note_details_screen.compoenents.NoteRow
@@ -20,8 +24,17 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @Composable
 fun NoteDetailsScreen(
     navigator: DestinationsNavigator,
-    note: Note? = null
+    noteId: String? = null
 ) {
+    var note: Note? by remember {
+        mutableStateOf(null)
+    }
+
+    noteId?.let {
+        val noteIdInt = it.toInt()
+        // todo: Find the actual note using this ID
+    }
+
     Surface {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -33,8 +46,8 @@ fun NoteDetailsScreen(
                     .weight(1f)
                     .fillMaxSize()
             ) {
-                TitleRow()
-                NoteRow()
+                TitleRow(noteTitle = note?.title)
+                NoteRow(noteBody = note?.body)
             }
             BottomActionBar()
         }

@@ -23,13 +23,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.mutualmobile.mmnotes.domain.models.Note
+import com.ramcosta.composedestinations.NoteDetailsScreenDestination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @ExperimentalFoundationApi
 @Composable
 fun NotesGridView(
     notes: List<Note>,
     gridSize: Int = 2,
-    padding: Dp = 4.dp
+    padding: Dp = 4.dp,
+    navigator: DestinationsNavigator
 ) {
     Row(
         modifier = Modifier
@@ -42,9 +45,9 @@ fun NotesGridView(
                 notes.forEach { note ->
                     item {
                         NoteCard(
-                            title = note.title,
-                            body = note.body,
-                            padding = padding
+                            note = note,
+                            padding = padding,
+                            navigator = navigator
                         )
                     }
                 }
@@ -59,8 +62,8 @@ fun NotesGridView(
 @Composable
 private fun NoteCard(
     padding: Dp,
-    title: String,
-    body: String
+    note: Note,
+    navigator: DestinationsNavigator
 ) {
     Card(
         modifier = Modifier
@@ -76,14 +79,16 @@ private fun NoteCard(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .clickable {}
+                .clickable {
+                    navigator.navigate(NoteDetailsScreenDestination(noteId = note.id.toString()))
+                }
                 .padding(padding * 3),
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top
         ) {
-            Text(text = title, style = MaterialTheme.typography.h5)
+            Text(text = note.title, style = MaterialTheme.typography.h5)
             Spacer(modifier = Modifier.padding(padding / 2))
-            Text(text = body, style = MaterialTheme.typography.body2)
+            Text(text = note.body, style = MaterialTheme.typography.body2)
         }
     }
 }

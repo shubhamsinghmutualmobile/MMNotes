@@ -21,7 +21,8 @@ import com.mutualmobile.mmnotes.android.R
 
 @Composable
 fun NoteRow(
-    padding: Dp = 8.dp
+    padding: Dp = 8.dp,
+    noteBody: String?
 ) {
     Box(
         modifier = Modifier
@@ -30,7 +31,7 @@ fun NoteRow(
         contentAlignment = Alignment.TopStart
     ) {
         var noteText by remember {
-            mutableStateOf("")
+            mutableStateOf(noteBody ?: "")
         }
         BasicTextField(
             modifier = Modifier.fillMaxSize(),

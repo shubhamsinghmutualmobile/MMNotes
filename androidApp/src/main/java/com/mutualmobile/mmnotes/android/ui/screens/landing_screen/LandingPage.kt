@@ -75,7 +75,7 @@ fun LandingPage(
         Scaffold(
             floatingActionButton = {
                 FloatingActionButton(
-                    onClick = { navigator.navigate(NoteDetailsScreenDestination) },
+                    onClick = { navigator.navigate(NoteDetailsScreenDestination()) },
                     shape = fabShape
                 ) {
                     Image(
@@ -95,7 +95,8 @@ fun LandingPage(
                 initial = listOf()
             )
             NotesGridView(
-                notes = notes
+                notes = notes,
+                navigator = navigator
             )
         }
     }
