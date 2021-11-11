@@ -17,7 +17,7 @@ import com.mutualmobile.mmnotes.android.R
 
 @Composable
 fun BottomActionBar(
-    noteEditTime: String = stringResource(R.string.noteDetailsScreen_sampleNoteEditTimeTxt)
+    noteEditTime: String? = stringResource(R.string.noteDetailsScreen_sampleNoteEditTimeTxt)
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -39,7 +39,7 @@ fun BottomActionBar(
             )
         }
         Text(
-            text = noteEditTime,
+            text = noteEditTime?.let { nnNoteEditTime -> "Created on: $nnNoteEditTime" } ?: "",
             modifier = Modifier.weight(1f),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.button

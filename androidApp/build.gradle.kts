@@ -32,7 +32,7 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.4.0-beta02")
 
     implementation("io.insert-koin:koin-android:3.1.3")
-    implementation ("io.insert-koin:koin-androidx-compose:3.1.3")
+    implementation("io.insert-koin:koin-androidx-compose:3.1.3")
 }
 
 android {

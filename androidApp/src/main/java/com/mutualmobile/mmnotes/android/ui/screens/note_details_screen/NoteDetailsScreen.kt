@@ -17,6 +17,8 @@ import com.mutualmobile.mmnotes.viewmodels.NotesViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import org.koin.androidx.compose.getViewModel
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 private const val TAG = "NoteDetailsScreen"
 
@@ -57,14 +59,22 @@ fun NoteDetailsScreen(
             ) {
                 TitleRow(noteTitle = note?.title) { userInput: String ->
                     note = note?.copy(title = userInput)
-                        ?: Note(if (isNewNote) null else noteId!!.toInt(), userInput, "", 123456)
+                        ?: Note(if (isNewNote) null else noteId!!.toInt(), userInput, "")
                 }
                 NoteRow(noteBody = note?.body) { userInput: String ->
                     note = note?.copy(body = userInput)
-                        ?: Note(if (isNewNote) null else noteId!!.toInt(), "", userInput, 123456)
+                        ?: Note(if (isNewNote) null else noteId!!.toInt(), "", userInput)
                 }
             }
-            BottomActionBar()
+
+            BottomActionBar(
+                noteEditTime = note?.let { nnNote ->
+                    SimpleDateFormat(
+                        "dd/MM/yyyy hh:mm:ss",
+                        Locale.US
+                    ).format(nnNote.dateCreated)
+                }
+            )
         }
     }
 }
