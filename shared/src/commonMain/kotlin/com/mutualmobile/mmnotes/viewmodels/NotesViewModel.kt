@@ -10,7 +10,6 @@ import com.mutualmobile.mmnotes.domain.usecases.notes.UpdateNoteUseCase
 import dev.icerock.moko.mvvm.livedata.LiveData
 import dev.icerock.moko.mvvm.livedata.MutableLiveData
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
-import kotlinx.coroutines.launch
 
 private const val TAG = "NotesViewModel"
 
@@ -33,35 +32,19 @@ class NotesViewModel constructor(
         _listOfNotesLiveData.postValue(getAllNotesUseCase())
     }
 
-    fun getAllNotes() {
-        viewModelScope.launch {
-            _listOfNotesLiveData.postValue(getAllNotesUseCase())
-        }
-    }
+    fun getAllNotes() = _listOfNotesLiveData.postValue(getAllNotesUseCase())
 
     fun deleteAllNotes() {
-        viewModelScope.launch {
-            deleteAllNotesUseCase()
-        }
+        deleteAllNotesUseCase()
+        getAllNotes()
     }
 
-    fun searchNotes(title: String) {
-        viewModelScope.launch {
-            _searchNotesLiveData.postValue(searchNotesUseCase(title = title))
-        }
-    }
+    fun searchNotes(title: String) =
+        _searchNotesLiveData.postValue(searchNotesUseCase(title = title))
 
-    fun insertNote(note: Note) {
-        viewModelScope.launch {
-            insertNoteUseCase(note = note)
-        }
-    }
+    fun insertNote(note: Note) = insertNoteUseCase(note = note)
 
     fun getNoteById(id: Int) = getNoteByIdUseCase(noteId = id)
 
-    fun updateNote(note: Note) {
-        viewModelScope.launch {
-            updateNoteUseCase(note = note)
-        }
-    }
+    fun updateNote(note: Note) = updateNoteUseCase(note = note)
 }

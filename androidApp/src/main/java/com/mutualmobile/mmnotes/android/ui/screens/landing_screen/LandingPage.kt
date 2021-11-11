@@ -32,6 +32,8 @@ fun LandingPage(
     navigator: DestinationsNavigator,
     notesViewModel: NotesViewModel = getViewModel()
 ) {
+    val notes by notesViewModel.listOfNotesLiveData.asFlow().collectAsState(initial = listOf())
+    notesViewModel.getAllNotes()
     Surface {
         val fabShape = RoundedCornerShape(16.dp)
         Scaffold(
@@ -53,9 +55,6 @@ fun LandingPage(
                 TopSearchBar()
             }
         ) {
-            val notes by notesViewModel.listOfNotesLiveData.asFlow().collectAsState(
-                initial = listOf()
-            )
             NotesGridView(
                 notes = notes,
                 navigator = navigator

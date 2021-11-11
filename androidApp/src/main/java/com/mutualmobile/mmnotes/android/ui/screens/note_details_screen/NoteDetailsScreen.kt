@@ -57,11 +57,11 @@ fun NoteDetailsScreen(
             ) {
                 TitleRow(noteTitle = note?.title) { userInput: String ->
                     note = note?.copy(title = userInput)
-                        ?: Note(null, userInput, "", 123456)
+                        ?: Note(if (isNewNote) null else noteId!!.toInt(), userInput, "", 123456)
                 }
                 NoteRow(noteBody = note?.body) { userInput: String ->
                     note = note?.copy(body = userInput)
-                        ?: Note(null, "", userInput, 123456)
+                        ?: Note(if (isNewNote) null else noteId!!.toInt(), "", userInput, 123456)
                 }
             }
             BottomActionBar()
