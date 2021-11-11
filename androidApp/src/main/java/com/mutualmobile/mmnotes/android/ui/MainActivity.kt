@@ -5,8 +5,6 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.mutualmobile.mmnotes.android.theme.BaseComposeTheme
 import com.ramcosta.composedestinations.DestinationsNavHost
-import com.ramcosta.composedestinations.LandingPageDestination
-import com.ramcosta.composedestinations.rememberDestinationsNavController
 
 private const val TAG = "MainActivity"
 
@@ -18,11 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             BaseComposeTheme {
-                val navController = rememberDestinationsNavController()
-                DestinationsNavHost(
-                    navController = navController,
-                    startDestination = LandingPageDestination
-                )
+                DestinationsNavHost()
             }
         }
     }

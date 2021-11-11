@@ -1,4 +1,4 @@
-package com.mutualmobile.mmnotes.android.ui.components
+package com.mutualmobile.mmnotes.android.ui.screens.landing_screen.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape

@@ -9,4 +9,14 @@
     <string name="topSearchBar_searchHint">Search your notes</string>
     <string name="topSearchBar_layoutTypeDesc">Notes layout type</string>
     <string name="topSearchBar_profileBtnDesc">User profile dialog</string>
+    <string name="noteDetailsScreen_attachElementsDesc">Attach elements</string>
+    <string name="noteDetailsScreen_changeColorDesc">Change note color</string>
+    <string name="noteDetailsScreen_overflowMenuDesc">Overflow menu</string>
+    <string name="noteDetailsScreen_sampleNoteEditTimeTxt">Edited 9:17 AM</string>
+    <string name="noteRow_hintTxt">Note</string>
+    <string name="titleRow_hintTxt">Title</string>
+    <string name="topActionBar_backBtnDesc">Go back</string>
+    <string name="topActionBar_pinBtnDesc">Pin this note</string>
+    <string name="topActionBar_reminderBtnDesc">Add reminder</string>
+    <string name="topActionBar_archiveBtnDesc">Archive this note</string>
 </resources>

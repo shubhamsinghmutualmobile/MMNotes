@@ -1,4 +1,4 @@
-package com.mutualmobile.mmnotes.android.ui.components
+package com.mutualmobile.mmnotes.android.ui.screens.landing_screen
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -18,6 +18,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.mutualmobile.mmnotes.android.R
+import com.mutualmobile.mmnotes.android.ui.screens.landing_screen.components.NotesBottomAppBar
+import com.mutualmobile.mmnotes.android.ui.screens.landing_screen.components.NotesGridView
+import com.mutualmobile.mmnotes.android.ui.screens.landing_screen.components.TopSearchBar
 import com.mutualmobile.mmnotes.data.datasources.local.MMNotesDatabase
 import com.mutualmobile.mmnotes.data.sources.local.DatabaseDriverFactory
 import com.mutualmobile.mmnotes.data.sources.local.repositories.NoteRepositoryImpl
