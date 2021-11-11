@@ -7,4 +7,5 @@ interface NoteRepository {
     fun searchNotesByTitle(title: String): List<Note>
     fun getAllNotes(): List<Note>
     fun deleteAllNotes()
+    fun getNoteById(id: Int): Note?
 }

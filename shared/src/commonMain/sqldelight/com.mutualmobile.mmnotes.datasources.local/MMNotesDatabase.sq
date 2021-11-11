@@ -9,3 +9,4 @@ insertNote: INSERT INTO NoteEntity(id, title, body, dateCreated) VALUES (?,?,?,?
 removeAllNotes: DELETE FROM NoteEntity;
 searchNotesByTitle: SELECT * FROM NoteEntity WHERE title LIKE ?;
 getAllNotes: SELECT * FROM NoteEntity;
+getNoteById: SELECT * FROM NoteEntity WHERE id = ?;

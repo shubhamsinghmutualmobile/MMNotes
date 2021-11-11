@@ -35,6 +35,7 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.1")
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+                implementation("io.insert-koin:koin-core:3.1.3")
             }
         }
         val commonTest by getting {

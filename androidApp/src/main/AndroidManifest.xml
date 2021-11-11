@@ -3,6 +3,7 @@
     package="com.mutualmobile.mmnotes.android">
 
     <application
+        android:name=".ui.MMNApplication"
         android:allowBackup="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

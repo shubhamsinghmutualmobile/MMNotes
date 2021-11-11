@@ -5,10 +5,12 @@ import com.mutualmobile.mmnotes.data.sources.mappers.toNote
 import com.mutualmobile.mmnotes.data.sources.models.NoteEntity
 import com.mutualmobile.mmnotes.domain.models.Note
 import com.mutualmobile.mmnotes.domain.repositories.NoteRepository
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class NoteRepositoryImpl constructor(
-    private val database: MMNotesDatabase
-) : NoteRepository {
+class NoteRepositoryImpl : NoteRepository, KoinComponent {
+
+    private val database: MMNotesDatabase by inject()
 
     override fun insertNote(note: Note) {
         database.mMNotesDatabaseQueries.insertNote(
@@ -45,5 +47,16 @@ class NoteRepositoryImpl constructor(
 
     override fun deleteAllNotes() {
         database.mMNotesDatabaseQueries.removeAllNotes()
+    }
+
+    override fun getNoteById(id: Int): Note? {
+        return database.mMNotesDatabaseQueries.getNoteById(id = id.toLong()).executeAsList().firstOrNull()?.let { dbNoteEntity ->
+            NoteEntity(
+                id = dbNoteEntity.id.toInt(),
+                title = dbNoteEntity.title,
+                body = dbNoteEntity.body,
+                dateCreated = dbNoteEntity.dateCreated
+            ).toNote()
+        }
     }
 }
