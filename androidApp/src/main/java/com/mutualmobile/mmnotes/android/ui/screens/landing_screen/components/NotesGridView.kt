@@ -95,7 +95,9 @@ private fun NoteCard(
                         )
                     },
                     onLongClick = {
-                        notesViewModel.deleteAllNotes()
+                        note.id?.let { nnId ->
+                            notesViewModel.deleteNoteById(nnId)
+                        }
                     }
                 )
                 .padding(padding * 3),

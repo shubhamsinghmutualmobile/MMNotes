@@ -11,3 +11,4 @@ searchNotesByTitle: SELECT * FROM NoteEntity WHERE title LIKE ?;
 getAllNotes: SELECT * FROM NoteEntity;
 getNoteById: SELECT * FROM NoteEntity WHERE id = ?;
 updateNote: UPDATE NoteEntity SET title = ?, body = ?, dateCreated = ? WHERE id = ?;
+removeNoteById: DELETE FROM NoteEntity WHERE id = ?;

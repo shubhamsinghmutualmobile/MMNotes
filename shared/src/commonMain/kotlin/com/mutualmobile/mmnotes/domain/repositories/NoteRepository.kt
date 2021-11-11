@@ -9,4 +9,5 @@ interface NoteRepository {
     fun deleteAllNotes()
     fun getNoteById(id: Int): Note?
     fun updateNote(note: Note)
+    fun deleteNoteById(id: Int)
 }

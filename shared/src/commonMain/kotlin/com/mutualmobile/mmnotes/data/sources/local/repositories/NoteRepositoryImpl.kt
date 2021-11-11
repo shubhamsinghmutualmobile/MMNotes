@@ -70,4 +70,8 @@ class NoteRepositoryImpl : NoteRepository, KoinComponent {
             )
         }
     }
+
+    override fun deleteNoteById(id: Int) {
+        database.mMNotesDatabaseQueries.removeNoteById(id = id.toLong())
+    }
 }
